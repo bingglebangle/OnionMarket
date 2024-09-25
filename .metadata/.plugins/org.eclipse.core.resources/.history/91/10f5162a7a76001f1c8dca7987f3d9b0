@@ -1,0 +1,47 @@
+package com.example.onion.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Post {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_seq_gen")
+    @SequenceGenerator(name = "post_seq_gen", sequenceName = "post_seq", allocationSize = 1)
+    private Long postSeq;
+
+    @Column(nullable = false, length = 30)
+    private String userId; // 글 작성자 아이디
+
+    @Column(nullable = false, length = 30)
+    private String name; // 글 작성자 이름
+
+    @Column(nullable = false, length = 255)
+    private String sub; // 글 제목
+
+    @Column(nullable = false, length = 4000)
+    private String con; // 글 내용
+
+    @Column(nullable = false)
+    private int viewCount = 0; // 조회수 기본값 0
+
+    @Column(length = 4000)
+    private String img; // 첨부 이미지
+
+    @Column(nullable = false)
+    private int posttype; // 포스트 타입 (게시판 종류 등)
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date logtime = new Date(); // 작성일 기본값 현재 시간
+}

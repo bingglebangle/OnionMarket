@@ -1,0 +1,24 @@
+package com.example.onion.converter;
+
+import com.example.onion.dto.JobboardpostDTO;
+import com.example.onion.entity.Jobboardpost;
+import com.example.onion.entity.Saleboard;
+
+
+	public class JobBoardPostConverter {
+
+	    // DTO -> 엔티티 변환
+	    public static Jobboardpost toEntity(JobboardpostDTO dto, Saleboard saleboard) {
+	        Jobboardpost jobBoardPost = new Jobboardpost();
+	        jobBoardPost.setSaleboard(saleboard);  // Saleboard 외래키 설정
+	        jobBoardPost.setPeoplenum(dto.getPeoplenum());
+	        jobBoardPost.setWorkingdate(dto.getWorkingdate());
+	        jobBoardPost.setWorkinghours(dto.getWorkinghours());
+	        jobBoardPost.setEndDate(dto.getEndDate());
+	        jobBoardPost.setSalarytype(dto.getSalarytype());
+	        jobBoardPost.setSalary(dto.getSalary());
+	        return jobBoardPost;
+	    }
+	}
+
+}

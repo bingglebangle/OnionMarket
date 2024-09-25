@@ -1,0 +1,16 @@
+@Entity
+@Table(name = "Categorygroups")
+@Data // Lombok 어노테이션으로 Getter, Setter, toString 자동 생성
+@NoArgsConstructor // 기본 생성자 자동 생성
+@AllArgsConstructor // 모든 필드를 파라미터로 받는 생성자 자동 생성
+@Builder // 빌더 패턴 적용
+public class Categorygroups {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_categorygroups")
+    @SequenceGenerator(name = "seq_categorygroups", sequenceName = "seq_Categorygroups")
+    private Long groupseq;
+
+    @Column(name = "groupname")
+    private String groupname;
+}

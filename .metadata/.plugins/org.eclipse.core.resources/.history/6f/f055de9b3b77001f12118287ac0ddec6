@@ -1,0 +1,268 @@
+<div th:replace="~{layouts/header}"></div>
+
+<style>
+.container1 {
+	width: 90%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	margin-top: 120px; /* 헤더와의 간격을 충분히 확보 */
+}
+
+.h1name {
+	text-align: center;
+	color: #333;
+}
+
+/* 검색 폼 스타일 */
+.search-form1 {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+.form-input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.form-select {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.search-button {
+	padding: 10px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.search-button:hover {
+	background-color: #0056b3;
+}
+
+/* 그리드 레이아웃 */
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	margin-bottom: 15px;
+}
+
+/* 체크박스 그룹 */
+.checkbox-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.checkbox-group label {
+	display: inline-block;
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+
+/* 테이블 스타일 */
+.table-container {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+.table-header {
+	background-color: #f0f0f0;
+	font-weight: bold;
+}
+
+.table-header-cell {
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: left;
+}
+
+.table-row {
+}
+
+.table-row-cell {
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: left;
+}
+
+.job-title {
+	color: #007bff;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.job-title:hover {
+	text-decoration: underline;
+}
+
+.small-text {
+	color: #888;
+	font-size: 12px;
+}
+
+/* 헤더와 폼의 겹침 방지를 위한 추가 스타일 */
+header {
+	position: relative;
+	z-index: 10; /* 헤더가 항상 상단에 있도록 z-index 추가 */
+}
+
+.search-form1 {
+	position: relative;
+	z-index: 1; /* 헤더보다 낮은 값으로 설정 */
+	margin-top: 20px; /* 헤더와 폼 간의 간격 확보 */
+}
+</style>
+
+<div class="container1">
+	<h1 class="h1name">일자리 검색</h1>
+
+	<form class="search-form1" id="searchForm">
+		<input type="text" id="location" placeholder="근무지 입력" class="form-input"> 
+		<input type="number" id="minSalary" placeholder="최소 급여 금액" class="form-input">
+
+		<!-- 근무 요일과 급여 종류를 Grid로 배치 -->
+		<div class="grid-container">
+			<!-- 근무 요일 -->
+			<div class="form-group">
+				<label>근무 요일</label>
+				<div class="checkbox-group">
+					<label><input type="checkbox" name="workingDay" value="월"> 월</label> 
+					<label><input type="checkbox" name="workingDay" value="화"> 화</label>
+					<label><input type="checkbox" name="workingDay" value="수"> 수</label>
+					<label><input type="checkbox" name="workingDay" value="목"> 목</label> 
+					<label><input type="checkbox" name="workingDay" value="금"> 금</label>
+					<label><input type="checkbox" name="workingDay" value="토"> 토</label> 
+					<label><input type="checkbox" name="workingDay" value="일"> 일</label>
+				</div>
+			</div>
+
+			<!-- 급여 종류 -->
+			<div class="form-group">
+				<label>급여 종류</label>
+				<div class="checkbox-group">
+					<label><input type="checkbox" name="salaryType" value="월급"> 월급</label> 
+					<label><input type="checkbox" name="salaryType" value="주급"> 주급</label> 
+					<label><input type="checkbox" name="salaryType" value="일급"> 일급</label>
+					<label><input type="checkbox" name="salaryType" value="시급"> 시급</label>
+				</div>
+			</div>
+		</div>
+
+		<button type="submit" class="search-button">검색</button>
+	</form>
+
+	<table class="table-container">
+		<thead>
+			<tr class="table-header">
+				<th class="table-header-cell">근무지</th>
+				<th class="table-header-cell">회사명/공고제목</th>
+				<th class="table-header-cell">근무시간</th>
+				<th class="table-header-cell">급여</th>
+				<th class="table-header-cell">채용마감일</th>
+			</tr>
+		</thead>
+		<tbody id="jobList">
+			<tr class="table-row" th:each="job : ${joblist}">
+				<td class="table-row-cell" th:text="${job.saleuser.saleaddress}"></td>
+				<td class="table-row-cell">
+					<div class="small-text" th:text="${job.saleuser.salestorename}"></div>
+					<div class="job-title" th:text="${job.JBsub}"></div>
+				</td>
+				<td class="table-row-cell">
+					<div class="small-text" th:text="${job.JBWorkingdate}"></div>
+					<div class="job-title" th:text="${job.JBWorkinghours}"></div>
+				</td>
+				<td class="table-row-cell">
+					<div class="small-text" th:text="${job.JBSalarytype}"></div>
+					<div class="job-title" th:text="${job.JBSalary}"></div>
+				</td>
+				<td class="table-row-cell" th:text="${job.JBEnddate}"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script>
+	document.getElementById('searchForm').addEventListener(
+		'submit',
+		function(event) {
+			event.preventDefault();
+
+			const location = document.getElementById('location').value.toLowerCase();
+			const minSalary = document.getElementById('minSalary').value;
+
+			const salaryTypes = [];
+			document.querySelectorAll('input[name="salaryType"]:checked')
+				.forEach(function(checkbox) {
+					salaryTypes.push(checkbox.value);
+				});
+
+			const workingDays = [];
+			document.querySelectorAll('input[name="workingDay"]:checked')
+				.forEach(function(checkbox) {
+					workingDays.push(checkbox.value);
+				});
+
+			const jobItems = document.querySelectorAll('#jobList .table-row');
+
+			// 모든 리스트를 먼저 보여줌
+			jobItems.forEach(function(job) {
+				job.style.display = ''; // 기본적으로 모두 표시
+			});
+
+			// 검색 조건에 따라 필터링
+			jobItems.forEach(function(job) {
+				const jobLocation = job.querySelector('.table-row-cell').innerText.toLowerCase();
+				const jobSalary = parseInt(job.querySelector('.table-row-cell:nth-child(4)').innerText.replace(/[^0-9]/g, ''));
+				const jobSalaryText = job.querySelector('.table-row-cell:nth-child(4)').innerText;
+
+				// 급여 종류 필터링: 선택된 급여 종류 중 하나라도 포함되면 true
+				let matchesSalaryType = false;
+				if (salaryTypes.length > 0) {
+					salaryTypes.forEach(function(type) {
+						if (jobSalaryText.includes(type)) {
+							matchesSalaryType = true;
+						}
+					});
+				} else {
+					matchesSalaryType = true; // 급여 종류 선택 안 되어 있을 때는 필터링 안 함
+				}
+
+				const jobWorkingTime = job.querySelector('.table-row-cell:nth-child(3)').innerText;
+
+				// 근무 요일 필터링
+				let matchesWorkingDay = false;
+				if (workingDays.length > 0) {
+					workingDays.forEach(function(day) {
+						if (jobWorkingTime.includes(day)) {
+							matchesWorkingDay = true;
+						}
+					});
+				} else {
+					matchesWorkingDay = true; // 체크박스 선택 안 되어 있을 때는 필터링 안 함
+				}
+
+				if ((location && !jobLocation.includes(location))
+					|| (minSalary && jobSalary < minSalary)
+					|| !matchesSalaryType || !matchesWorkingDay) {
+					job.style.display = 'none'; // 조건에 맞지 않으면 숨김
+				}
+			});
+		});
+</script>
+
+<div th:replace="~{layouts/footer}>

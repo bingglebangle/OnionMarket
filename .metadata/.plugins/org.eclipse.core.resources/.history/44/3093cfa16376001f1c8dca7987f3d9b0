@@ -1,0 +1,36 @@
+package com.example.onion.dto;
+
+import com.example.onion.entity.Bizcategory;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class BizcategoryDTO {
+
+    private Long id;
+    private String bizcategory;
+    private Long groupseq;
+
+    // Entity를 DTO로 변환하는 메서드
+    public static BizcategoryDTO fromEntity(Bizcategory bizcategory) {
+        return BizcategoryDTO.builder()
+                .id(bizcategory.getId())
+                .bizcategory(bizcategory.getBizcategory())
+                .groupseq(bizcategory.getCategorygroup().getGroupseq())
+                .build();
+    }
+
+    // DTO를 Entity로 변환하는 메서드
+    public Bizcategory toEntity(Categorygroups categorygroup) {
+        return Bizcategory.builder()
+                .id(this.id)
+                .bizcategory(this.bizcategory)
+                .categorygroup(categorygroup)
+                .build();
+    }
+}

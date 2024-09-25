@@ -1,0 +1,5 @@
+package com.example.onion.repository;
+
+public interface JobBoardPostRepository {
+
+}

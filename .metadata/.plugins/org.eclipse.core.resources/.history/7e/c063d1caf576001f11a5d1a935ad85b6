@@ -1,0 +1,43 @@
+package com.example.onion.entity;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "JobBoardPost")
+public class JobBoardPost {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "SBseq", nullable = false)
+    private Long SBseq;  // 글번호 (Saleboard FK)
+
+    @Column(name = "Peoplenum", nullable = false)
+    private int Peoplenum;  // 고용 인원 수
+
+    @Column(name = "Workingdate", length = 1000)
+    private String Workingdate;  // 근무 요일
+
+    @Column(name = "Workinghours", length = 1000)
+    private String Workinghours;  // 근무 시간
+
+    @Column(name = "EndDate", length = 1000)
+    private String EndDate;  // 채용 종료일
+
+    @Column(name = "Salarytype", length = 1000)
+    private String Salarytype;  // 급여 종류
+
+    @Column(name = "Salary")
+    private double Salary;  // 급여 금액
+
+    // Saleboard 외래키 매핑
+    @ManyToOne
+    @JoinColumn(name = "SBseq", referencedColumnName = "SBseq", insertable = false, updatable = false)
+    private Saleboard saleboard;
+}

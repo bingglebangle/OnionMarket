@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:replace="~{layouts/header}"></div>
+<br>
+<br>
+<div class="container">
+	<table class="table" style="width: 550px; margin: auto;">
+		<tr>
+			<td class="align">글제목</td>
+			<td class="align">[[${dto.MBsub}]]</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><img
+				th:src="@{${dto.MBimg}}" width="250" height="200">
+			</td>
+		</tr>
+		<tr>
+			<td class="align">글내용</td>
+			<td class="align">[[${dto.MBcon}]]</td>
+		</tr>
+	</table>
+</div>
+<div th:replace="~{layouts/footer}"></div>
+</body>
+</html>

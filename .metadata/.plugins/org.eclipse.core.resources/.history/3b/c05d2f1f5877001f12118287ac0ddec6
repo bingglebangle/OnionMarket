@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>구인 공고</title>
+<style>
+.con {
+	width: 900px;
+	margin: 20px auto;
+	padding: 20px;
+	background-color: #fff;
+}
+
+.header {
+	display: flex;
+	height: 200px;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #ddd;
+	padding: 20px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+}
+
+.header img {
+	max-width: 120px;
+}
+
+.title {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.ptag{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.sub-title {
+	font-size: 12px;
+	color: #666;
+	margin-top: 5px;
+}
+
+.job-info{
+
+}
+
+
+.job-info, .recruit-info {
+	display: flex;
+	justify-content: space-between;
+	padding: 15px 0;
+	border-bottom: 1px solid #ddd;
+}
+
+.info-title {
+	font-size: 14px;
+	color: #333;
+}
+
+.salary {
+	font-size: 24px;
+	color: #e91e63;
+	font-weight: bold;
+}
+
+.recruit-info div {
+	text-align: center;
+}
+
+.location {
+	padding: 15px 0;
+}
+
+.map img {
+	width: 100%;
+	border-radius: 5px;
+}
+
+.description {
+	padding: 15px 0;
+	border-top: 1px solid #ddd;
+}
+
+.description p {
+	font-size: 14px;
+	color: #333;
+	line-height: 1.6;
+}
+
+.highlight {
+	color: #e91e63;
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+	<div class="con">
+		<div class="header">
+			<div>
+				<div class="title">[정규직/인센티브별도] 삼성전자 전자랜드 여수본점 판매상담사 채용</div>
+				<div class="sub-title">㈜제니엘/삼성전자 전자랜드</div>
+			</div>
+			<img src="zeniel_logo.png" alt="Zeniel Logo">
+		</div>
+
+		<p class="ptag">근무조건</p>
+		<div class="job-info">
+			<div>
+				<div class="info-title">급여</div>
+				<div class="salary">2,542,736원</div>
+			</div>
+			<div>
+				<div class="info-title">근무요일</div>
+				<div>주 5일</div>
+			</div>
+			<div>
+				<div class="info-title">근무시간</div>
+				<div>
+					10:00 - 20:30 <br>(휴게시간 60분)
+				</div>
+			</div>
+		</div>
+
+		<div class="recruit-info">
+			<div>
+				<div class="info-title">모집마감</div>
+				<div>
+					2024-09-26<br> <span class="highlight">마감 6일전</span>
+				</div>
+			</div>
+			<div>
+				<div class="info-title">모집인원</div>
+				<div>1명</div>
+			</div>
+		</div>
+
+		<div class="location">
+			<div class="info-title">근무지역</div>
+			<div>전남 여수시 좌수영로 417 (미평동) 전자랜드 여수본점</div>
+			<div class="map">
+				<img src="map_image.png" alt="Location Map">
+			</div>
+		</div>
+
+		<div class="description">
+			<div class="info-title">글 내용</div>
+			<p>노량진 프레스에서 단기 알바 구합니다. 10월 한달간 일해줄 알바 구합니다. 노량진 프레스에서 단기 알바
+				구합니다. 10월 한달간 일해줄 알바 구합니다.</p>
+		</div>
+	</div>
+
+</body>
+</html>

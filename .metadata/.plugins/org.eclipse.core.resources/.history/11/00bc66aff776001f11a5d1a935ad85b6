@@ -1,0 +1,4 @@
+package com.example.onion.repository;
+
+public interface JobBoardPostRepository extends JpaRepository<JobBoardPost, Long> {
+}

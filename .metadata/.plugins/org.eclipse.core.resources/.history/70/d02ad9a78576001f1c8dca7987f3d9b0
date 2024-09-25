@@ -1,0 +1,41 @@
+<script type="text/javascript" src="../js/noticeventScript.js"></script>
+<style>
+form {
+	margin: auto;
+}
+
+#table {
+	width: 550px;
+	margin: auto;
+}
+</style>
+
+<div class="container">
+	<h3 style="text-align: center;">이벤트/공지사항 등록</h3>
+	<form action="/manager/noticevent" enctype="multipart/form-data"
+		method="post" name="form1">
+		<table class="table">
+			<tr>
+				<td>글 제목</td>
+				<td><input type="text" name="MBsub"></td>
+			</tr>
+			<tr>
+				<td>글 내용</td>
+				<td><textarea name="MBcon" rows="7" cols="50"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="file" name="img"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<!-- '등록' 버튼에 checkWrite() 함수가 정의되어 있는지 확인 --> <input type="button"
+					value="등록" onclick="checkWrite()"> <input type="reset"
+					value="다시작성">
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/manager/noticeventList">목록</a></td>
+			</tr>
+		</table>
+	</form>
+</div>

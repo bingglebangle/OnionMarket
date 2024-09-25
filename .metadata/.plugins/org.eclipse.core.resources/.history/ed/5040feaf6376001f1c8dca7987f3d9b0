@@ -1,0 +1,36 @@
+package com.example.onion.dto;
+
+import com.example.onion.entity.Boardcategory;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class BoardcategoryDTO {
+
+    private Long id;
+    private String boardcategory;
+    private Long groupseq;
+
+    // Entity를 DTO로 변환하는 메서드
+    public static BoardcategoryDTO fromEntity(Boardcategory boardcategory) {
+        return BoardcategoryDTO.builder()
+                .id(boardcategory.getId())
+                .boardcategory(boardcategory.getBoardcategory())
+                .groupseq(boardcategory.getCategorygroup().getGroupseq())
+                .build();
+    }
+
+    // DTO를 Entity로 변환하는 메서드
+    public Boardcategory toEntity(Categorygroups categorygroup) {
+        return Boardcategory.builder()
+                .id(this.id)
+                .boardcategory(this.boardcategory)
+                .categorygroup(categorygroup)
+                .build();
+    }
+}

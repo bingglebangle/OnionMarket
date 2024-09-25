@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.table tr {
+    padding: 15px 0; /* 위아래 간격 추가 */
+}
+
+.table img {
+    margin: 10px 0; /* 이미지 상하 간격 추가 */
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<table class="table" style="width: 1200px; margin: auto;">
+
+			<tr align="center" class="table-primary">
+				<th>글번호</th>
+				<th>이미지</th>
+				<th>글제목</th>
+				<th>조회수</th>
+				<th>작성일</th>
+			</tr>
+			<tr th:each="dto : ${list}" align="center">
+				<td>[[${dto.MBseq}]]</td>
+				<td><a id="subjectA"
+					th:href="@{/manager/noticeventView(seq=${dto.MBseq},pg=${pg})}">
+						 <img th:src="@{'/storage/' +${dto.MBimg}}" alt="공지사항/이벤트 이미지"
+						width="50" height="50">
+				</a></td>
+				<td>[[${dto.MBsub}]]</td>
+				<td>[[${dto.MBhit}]]</td>
+				<td>[[${dto.MBlogtime}]]</td>
+			</tr>
+			<tr align="center">
+				<td colspan="5"><th:block th:if="${startPage > 3}">
+            	[<a th:href="@{/manager/noticeventList(pg=${startPage-1})}"
+							class="paging">이전</a>]
+         	</th:block> <th:block
+						th:each="i : ${#numbers.sequence(startPage, endPage)}">
+						<th:block th:if="${pg == i}">
+               		[<a th:href="@{/manager/noticeventList(pg=${i})}"
+								th:text="${i}" class="currentPaging"></a>]
+            	</th:block>
+						<th:block th:unless="${pg == i}">
+               		[<a th:href="@{/manager/noticeventList(pg=${i})}"
+								th:text="${i}" class="paging"></a>]
+            	</th:block>
+					</th:block> <th:block th:if="${endPage < totalP}">
+            	[<a th:href="@{/manager/noticeventList(pg=${endPage+1})}"
+							class="paging">다음</a>]
+         	</th:block></td>
+			</tr>
+			<tr>
+				<td colspan="5"><a href="/manager/noticeventWrite">새글쓰기</a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

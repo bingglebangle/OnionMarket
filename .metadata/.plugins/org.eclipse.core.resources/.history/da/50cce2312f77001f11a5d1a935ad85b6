@@ -1,0 +1,25 @@
+package com.example.onion.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.example.onion.dto.JobboardDTO;
+import com.example.onion.entity.Jobboard;
+
+public interface JobBoardRepository extends JpaRepository<Jobboard, Integer> {
+
+	@Query(value = "SELECT * FROM Jobboard WHERE JBid = :id", nativeQuery = true)
+	List<Jobboard> findByAllJobboard(@Param("id") String id);
+	
+	@Query(value = "SELECT * FROM Jobboard", nativeQuery = true)
+	List<Jobboard> findByAllJob();
+
+    @Query("SELECT new com.example.dto.JobboardDTO(j.JBseq, j.JBsub, j.JBcon, j.JBWorkinghours, j.JBSalary, s.salestorename, s.saleaddress) " +
+            "FROM Jobboard j JOIN j.saleuser s")
+     List<JobboardDTO> findAllJobWithSaleuser();
+
+
+}

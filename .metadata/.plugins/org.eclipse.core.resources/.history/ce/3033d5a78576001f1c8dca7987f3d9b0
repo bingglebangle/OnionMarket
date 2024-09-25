@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지/이벤트 수정</title>
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/manager/noticeventModify}" method="post" enctype="multipart/form-data">
+            <!-- '번호' 필드가 숨겨져 있어야 하는 경우, type을 'hidden'으로 설정 -->
+            <input type="hidden" name="MBseq" th:value="${manager_board.MBseq}"/>
+
+            <div>
+                <label for="MBsub">제목:</label>
+                <input type="text" id="MBsub" name="MBsub" th:value="${manager_board.MBsub}"/>
+            </div>
+            <div>
+                <label for="MBcon">내용:</label>
+                <textarea name="MBcon" id="MBcon" rows="7" cols="50" th:text="${manager_board.MBcon}"></textarea>
+            </div>
+            <div>
+                <label for="img">이미지:</label>
+                <input type="file" id="img" name="img"/>
+            </div>
+            <div>
+                <input type="submit" value="수정하기"/>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

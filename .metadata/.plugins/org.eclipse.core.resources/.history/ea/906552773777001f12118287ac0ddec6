@@ -1,0 +1,35 @@
+package com.example.onion.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.onion.entity.BoardInfo;
+import com.example.onion.entity.Community;
+
+@Service
+public class SearchService {
+
+    private final BoardService boardService;
+    private final CommunityService communityService;
+
+    @Autowired
+    public SearchService(BoardService boardService, CommunityService communityService) {
+        this.boardService = boardService;
+        this.communityService = communityService;
+    }
+
+    public Map<String, List<?>> searchAll(String query) {
+        List<BoardInfo> boardResults = boardService.searchPosts(query);  // 보드인포 검색
+        List<Community> communityResults = communityService.searchCommunities(query);  // 커뮤니티 검색
+
+        Map<String, List<?>> searchResults = new HashMap<>();
+        searchResults.put("boards", boardResults);
+        searchResults.put("communities", communityResults);
+
+        return searchResults;
+    }
+}

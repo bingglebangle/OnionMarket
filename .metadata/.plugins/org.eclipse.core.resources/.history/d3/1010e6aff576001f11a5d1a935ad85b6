@@ -1,0 +1,5 @@
+package com.example.onion.entity;
+
+public class Jobboardpost {
+
+}

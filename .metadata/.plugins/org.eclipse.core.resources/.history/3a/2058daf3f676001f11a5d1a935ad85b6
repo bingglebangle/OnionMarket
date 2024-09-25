@@ -1,0 +1,39 @@
+package com.example.onion.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Entity
+@Data
+@NoArgsConstructor
+public class Jobboardpost {create sequence seq_Jobboardpost nocycle nocache;
+
+
+	private Long id;
+    @Id
+    private Long SBseq;  // 글번호 (Saleboard FK)
+
+    private int Peoplenum;  // 고용 인원 수
+
+    private String Workingdate;  // 근무 요일
+
+    private String Workinghours;  // 근무 시간
+
+    private String EndDate;  // 채용 종료일
+
+    private String Salarytype;  // 급여 종류
+
+    private double Salary;  // 급여 금액
+
+    // Saleboard 외래키 매핑
+    @ManyToOne
+    @JoinColumn(name = "SBseq", referencedColumnName = "SBseq", insertable = false, updatable = false)
+    private Saleboard saleboard;
+}

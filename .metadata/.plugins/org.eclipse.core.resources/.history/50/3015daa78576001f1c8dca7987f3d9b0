@@ -1,0 +1,64 @@
+<style type="text/css">
+.paging {color:blue; text-decoration: none;}
+.currentPaging {color:red; text-decoration: underline;}
+
+#info:link {color: black; text-decoration: none;}
+#info:visited {color: black; text-decoration: none;}
+#info:active {color: black; text-decoration: none;}
+#info:hover {color: green; text-decoration: underline;}
+</style>
+
+<div class="container">
+    <table class="table" style="width: 650px; margin: auto;">
+        <thead class="table-primary" align="center">
+            <tr>
+                <th width="70">아이디</th>
+                <th width="100">이 름</th>
+                <th width="70">Role</th>
+                <th width="100">가입일</th>
+                <th width="70">게시글 수</th>  <!-- 작성 게시글 -->
+                <th width="70">댓글 수</th>    <!-- 작성 댓글 -->
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="user : ${list}" align="center">
+                <td th:text="${user.userid != null ? user.userid : 'N/A'}"></td>
+                <td>
+                    <a th:href="@{/profileView_m(pg=${pg}, id=${user.userid})}" id="info" th:text="${user.uname != null ? user.uname : 'Unknown'}"></a>
+                </td>
+                <td th:text="${user.role != null ? user.role : 'Unknown'}"></td>
+                <td th:text="${user.ulogtime != null ? #temporals.format(user.ulogtime, 'yyyy-MM-dd') : 'N/A'}"></td>
+                <td>
+                    <a th:href="@{/user/posts(pg=${pg}, id=${user.userid})}" id="info" th:text="${user.totalA != null ? user.totalA : 0}"></a>
+                </td>
+                <td>
+                    <a th:href="@{/user/comments(pg=${pg}, id=${user.userid})}" id="info" th:text="${user.totalComments != null ? user.totalComments : 0}"></a>
+                </td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr style="text-align: center;">
+                <td colspan="7">
+                    <th:block th:if="${startPage > 1}">
+                        [<a th:href="@{/profileView_m(pg=${startPage-1})}" class="paging">이전</a>]
+                    </th:block>
+
+                    <th:block th:each="page : ${#numbers.sequence(startPage,endPage)}">
+                        <th:block th:if="${pg == page}">
+                            [<span class="currentPaging" th:text="${page}">[[${page}]]</span>]
+                        </th:block>
+                        <th:block th:if="${pg != page}">
+                            [<a th:href="@{/profileView_m(pg=${page})}" class="paging" th:text="${page}">[[${page}]]</a>]
+                        </th:block>
+                    </th:block>
+
+                    <th:block th:if="${endPage < totalP}">
+                        [<a th:href="@{/profileView_m(pg=${endPage+1})}" class="paging">다음</a>]
+                    </th:block>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

@@ -1,0 +1,39 @@
+package com.example.onion.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.onion.entity.BoardInfo;
+import com.example.onion.entity.Community;
+import com.example.onion.service.BoardService;
+import com.example.onion.service.CommunityService;
+
+import org.springframework.ui.Model;
+
+@Controller
+public class SearchController {
+
+    @Autowired
+    private CommunityService communityService;
+
+    @Autowired
+    private BoardService boardService;
+
+    @GetMapping("/search")
+    public String search(@RequestParam("query") String query, Model model) {
+        // BoardInfo와 Community에서 검색 결과를 가져옴
+        List<BoardInfo> boardResults = boardService.searchPosts(query);
+        List<Community> communityResults = communityService.searchCommunities(query);
+
+        // 결과를 모델에 추가
+        model.addAttribute("boardResults", boardResults);
+        model.addAttribute("communityResults", communityResults);
+
+        return "searchResult"; // 검색 결과를 보여줄 페이지
+    }
+}
+

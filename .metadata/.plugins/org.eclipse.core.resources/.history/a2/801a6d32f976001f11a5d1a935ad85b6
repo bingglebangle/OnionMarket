@@ -1,0 +1,35 @@
+package com.example.onion.converter;
+
+import com.example.onion.dto.JobboardpostDTO;
+import com.example.onion.entity.Jobboardpost;
+import com.example.onion.entity.Saleboard;
+
+public class JobBoardPostConverter {
+
+    // DTO -> 엔티티 변환
+    public static Jobboardpost toEntity(JobboardpostDTO dto, Saleboard saleboard) {
+        Jobboardpost jobBoardPost = new Jobboardpost();
+        jobBoardPost.setSaleboard(saleboard);  // 외래키로 연결된 Saleboard 설정
+        jobBoardPost.setPeoplenum(dto.getPeoplenum());
+        jobBoardPost.setWorkingdate(dto.getWorkingdate());
+        jobBoardPost.setWorkinghours(dto.getWorkinghours());
+        jobBoardPost.setEndDate(dto.getEndDate());
+        jobBoardPost.setSalarytype(dto.getSalarytype());
+        jobBoardPost.setSalary(dto.getSalary());
+        return jobBoardPost;
+    }
+
+    // 엔티티 -> DTO 변환
+    public static JobboardpostDTO toDto(Jobboardpost jobBoardPost) {
+        JobboardpostDTO dto = new JobboardpostDTO();
+        dto.setId(jobBoardPost.getId());
+        dto.setPeoplenum(jobBoardPost.getPeoplenum());
+        dto.setWorkingdate(jobBoardPost.getWorkingdate());
+        dto.setWorkinghours(jobBoardPost.getWorkinghours());
+        dto.setEndDate(jobBoardPost.getEndDate());
+        dto.setSalarytype(jobBoardPost.getSalarytype());
+        dto.setSalary(jobBoardPost.getSalary());
+        dto.setSBseq(jobBoardPost.getSaleboard().getSBseq());
+        return dto;
+    }
+}

@@ -1,0 +1,5 @@
+package com.example.onion.dto;
+
+public class BizcategoryDTO {
+
+}

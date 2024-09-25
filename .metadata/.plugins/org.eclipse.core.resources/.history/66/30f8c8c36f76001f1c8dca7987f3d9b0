@@ -1,0 +1,30 @@
+package com.example.onion.dto;
+
+import com.example.onion.entity.Categorygroups;
+
+import groovy.transform.builder.Builder;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class CategorygroupsDTO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,
+					generator = "seq_Categorygroups_GENERATOR")
+	@SequenceGenerator(name = "seq_Categorygroups_GENERATOR",
+						sequenceName = "seq_Categorygroups", initialValue = 1, allocationSize = 1)
+	private Long groupseq;
+	private String groupname;
+
+	public Categorygroups toentity() {
+		return new Categorygroups(groupseq, groupname);
+	}
+}

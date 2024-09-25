@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과</title>
+</head>
+<body>
+    <h1>게시물 검색 결과</h1>
+
+    <!-- 보드 검색 결과 -->
+    <div th:if="${results != null and results['boards'] != null}">
+        <ul>
+            <li th:each="board : ${results['boards']}">
+                <p><strong>제목:</strong> <span th:text="${board.Bsub}"></span></p>
+                <p><strong>작성자:</strong> <span th:text="${board.Bname}"></span></p>
+                <p><strong>내용:</strong> <span th:text="${board.Bcon}"></span></p>
+                <p><strong>작성일:</strong> <span th:text="${board.Blogtime}"></span></p>
+            </li>
+        </ul>
+    </div>
+    <div th:if="${results == null or results['boards'] == null or results['boards'].size() == 0}">
+        <p>게시물 검색 결과가 없습니다.</p>
+    </div>
+
+    <h1>커뮤니티 검색 결과</h1>
+
+    <!-- 커뮤니티 검색 결과
+    <div th:if="${results != null and results['communities'] != null}">
+        <ul>
+            <li th:each="community : ${results['communities']}">
+                <p><strong>제목:</strong> <span th:text="${community.csub}"></span></p>
+                <p><strong>작성자:</strong> <span th:text="${community.cname}"></span></p>
+                <p><strong>내용:</strong> <span th:text="${community.ccon}"></span></p>
+                <p><strong>작성일:</strong> <span th:text="${community.clogtime}"></span></p>
+            </li>
+        </ul>
+    </div>
+    <div th:if="${results == null or results['communities'] == null or results['communities'].size() == 0}">
+        <p>커뮤니티 검색 결과가 없습니다.</p>
+    </div> -->
+
+    <a href="/main/main">메인으로 돌아가기</a>
+</body>
+</html>

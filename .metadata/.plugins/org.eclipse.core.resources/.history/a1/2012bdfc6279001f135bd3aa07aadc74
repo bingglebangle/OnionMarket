@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매니저 수정</title>
+</head>
+<body>
+    <h1>매니저 수정</h1>
+    <form th:action="@{/manager/update}" method="post">
+        
+        <!-- 아이디도 수정 가능하게 변경 -->
+        <label for="mid">아이디:</label>
+        <input type="text" id="mid" name="mid" th:value="${manager.mid}"><br><br>
+
+        <label for="mpwd">비밀번호:</label>
+        <input type="password" id="mpwd" name="mpwd" th:value="${manager.mpwd}"><br><br>
+
+        <!-- 권한 선택을 select로 변경 -->
+        <label for="role">권한:</label>
+        <select id="role" name="role">
+            <option value="MANAGER" th:selected="${manager.role == 'MANAGER'}">매니저</option>
+            <option value="USER" th:selected="${manager.role == 'USER'}">사용자</option>
+        </select><br><br>
+
+        <button type="submit">수정</button>
+    </form>
+</body>
+</html>

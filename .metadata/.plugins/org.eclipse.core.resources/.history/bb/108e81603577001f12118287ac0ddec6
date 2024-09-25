@@ -1,0 +1,13 @@
+package com.example.onion.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.onion.entity.BoardInfo;
+
+public interface BoardRepository extends JpaRepository<BoardInfo, Integer> {
+    List<BoardInfo> findByBsubContainingIgnoreCase(String query);
+}
+
+

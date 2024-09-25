@@ -1,0 +1,57 @@
+package com.example.onion.entity;
+
+import java.util.Date;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Saleboard {
+    private String SBid;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_Saleboard_generator")
+    @SequenceGenerator(name = "seq_Saleboard_generator", sequenceName = "seq_Saleboard", allocationSize = 1)
+    private int SBseq;
+
+    private String SBsubject;
+    private String SBcontent;
+    private String SBimg;
+    private int is_available;
+    private Date SBlogtime;
+    private int SBtype;
+
+    // 관계 매핑
+    @OneToMany(mappedBy = "saleboard", cascade = CascadeType.ALL)
+    private List<Jobboardpost> jobBoardPosts;
+
+    // SaleUser 외래키 매핑
+    @ManyToOne
+    @JoinColumn(name = "SBid", referencedColumnName = "Saleid", insertable = false, updatable = false)
+    private Saleuser saleUser;
+
+    // 새로운 생성자: SBseq는 제거
+    public Saleboard(String SBid, String SBsubject, String SBcontent, String SBimg, int is_available, Date SBlogtime, int SBtype) {
+        this.SBid = SBid;
+        this.SBsubject = SBsubject;
+        this.SBcontent = SBcontent;
+        this.SBimg = SBimg;
+        this.is_available = is_available;
+        this.SBlogtime = SBlogtime;
+        this.SBtype = SBtype;
+    }
+}

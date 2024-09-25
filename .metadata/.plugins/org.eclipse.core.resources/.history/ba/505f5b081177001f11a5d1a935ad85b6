@@ -1,0 +1,2 @@
+@Query(value = "SELECT * FROM Jobboard WHERE JBid = :id", nativeQuery = true)
+List<Jobboard> findByAllJobboard(@Param("id") String id);

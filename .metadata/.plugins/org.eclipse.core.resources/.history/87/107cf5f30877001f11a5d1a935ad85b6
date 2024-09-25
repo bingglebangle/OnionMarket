@@ -1,0 +1,23 @@
+package com.example.onion.dto;
+
+import java.util.Date;
+
+@Data
+@NoArgsConstructor
+public class JobboardDTO {
+	private String JBid;
+	private int JBseq;
+	private String  JBsub ;
+	private String JBcon;
+	private int JBPeoplenum;
+	private String JBWorkingdate;
+	private String JBWorkinghours;
+	private String JBEnddate;
+	private String JBSalarytype;
+	private String JBSalary;
+	private Date JBlogtime;
+	
+	public Jobboard toEntity() {
+		return new Jobboard(JBid, JBseq, JBsub, JBcon, JBPeoplenum, JBWorkingdate, JBWorkinghours, JBEnddate, JBSalarytype, JBSalary, JBlogtime);
+	}
+}

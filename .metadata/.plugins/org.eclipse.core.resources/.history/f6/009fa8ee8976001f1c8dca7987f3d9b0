@@ -1,0 +1,33 @@
+<style>
+.align {
+	text-align: center;
+	vertical-align: middle;
+}
+</style>
+
+<div class="container">
+	<table class="table" style="width: 550px; margin: auto;">
+		<tr>
+			<td class="align">글제목</td>
+			<td class="align">[[${dto.MBsub}]]</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><img
+				th:src="@{${dto.MBimg}}" width="250" height="200">
+			</td>
+		</tr>
+		<tr>
+			<td class="align">글내용</td>
+			<td class="align">[[${dto.MBcon}]]</td>
+		</tr>
+		<tr>
+			<td colspan="3" align="center"><input type="button" value="목록"
+				th:onclick="location.href='/manager/noticeventList?pg=[[${pg}]]'">
+				<input type="button" value="수정"
+				th:onclick="location.href='/manager/noticeventModifyForm?seq=[[${dto.MBseq}]]&pg=[[${pg}]]'">
+				<input type="button" value="삭제"
+				th:onclick="if(confirm('정말 삭제하시겠습니까?')) location.href='/manager/noticeventDelete?seq=[[${dto.MBseq}]]&pg=[[${pg}]]'">
+			</td>
+		</tr>
+	</table>
+</div>

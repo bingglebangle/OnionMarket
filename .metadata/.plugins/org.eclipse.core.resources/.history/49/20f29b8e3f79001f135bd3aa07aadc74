@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매니저 수정</title>
+</head>
+<body>
+    <h1>매니저 수정</h1>
+    <form action="/manager/update" method="post">
+        <input type="hidden" name="mid" th:value="${manager.mid}">
+        
+        <label for="mpwd">비밀번호:</label>
+        <input type="password" id="mpwd" name="mpwd" th:value="${manager.mpwd}"><br><br>
+
+        <label for="role">권한:</label>
+        <input type="text" id="role" name="role" th:value="${manager.role}"><br><br>
+
+        <button type="submit">수정</button>
+    </form>
+</body>
+</html>
+    

@@ -1,0 +1,9 @@
+package com.example.onion.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.onion.entity.Boardcategory;
+
+public interface BoardcategoryRepository extends JpaRepository<Boardcategory, Integer> {
+
+}

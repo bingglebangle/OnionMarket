@@ -1,0 +1,16 @@
+package com.example.onion.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.example.onion.dto.JobboardDTO;
+import com.example.onion.entity.Foodcategory;
+import com.example.onion.entity.Jobboard;
+
+public interface JobBoardRepository extends JpaRepository<Jobboard, Integer> {
+
+	@Query(value = "select * from Jobboard", nativeQuery = true)
+	List<Jobboard> findByAllJobboard();
+}

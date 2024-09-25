@@ -1,0 +1,22 @@
+package com.example.onion.entity;
+
+@Entity
+@Table(name = "Bizcategory")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Bizcategory {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_bizcategory")
+    @SequenceGenerator(name = "seq_bizcategory", sequenceName = "seq_Bizcategory")
+    private Long id;
+
+    @Column(name = "bizcategory")
+    private String bizcategory;
+
+    @ManyToOne
+    @JoinColumn(name = "groupseq", referencedColumnName = "groupseq")
+    private Categorygroups categorygroup;
+}

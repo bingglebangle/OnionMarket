@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과</title>
+</head>
+<body>
+    <h1>검색 결과</h1>
+
+    <div th:if="${results.isEmpty()}">
+        <p>검색 결과가 없습니다.</p>
+    </div>
+
+    <div th:if="${!results.isEmpty()}">
+        <ul>
+            <li th:each="board : ${results}">
+                <p><strong>제목:</strong> <span th:text="${board.Bsub}"></span></p>
+                <p><strong>작성자:</strong> <span th:text="${board.Bname}"></span></p>
+                <p><strong>내용:</strong> <span th:text="${board.Bcon}"></span></p>
+                <p><strong>작성일:</strong> <span th:text="${board.Blogtime}"></span></p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

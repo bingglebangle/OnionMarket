@@ -1,0 +1,55 @@
+package com.example.onion.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class PostDTO {
+
+    private Long postSeq;
+    private String userId; // 글 작성자 아이디
+    private String name; // 글 작성자 이름
+    private String sub; // 글 제목
+    private String con; // 글 내용
+    private int viewCount; // 조회수
+    private String img; // 첨부 이미지
+    private int posttype; // 포스트 타입
+    private Date logtime; // 작성일
+
+    // Entity to DTO 변환 메서드
+    public static PostDTO fromEntity(Post post) {
+        return PostDTO.builder()
+            .postSeq(post.getPostSeq())
+            .userId(post.getUserId())
+            .name(post.getName())
+            .sub(post.getSub())
+            .con(post.getCon())
+            .viewCount(post.getViewCount())
+            .img(post.getImg())
+            .posttype(post.getPosttype())
+            .logtime(post.getLogtime())
+            .build();
+    }
+
+    // DTO to Entity 변환 메서드
+    public Post toEntity() {
+        return Post.builder()
+            .postSeq(postSeq)
+            .userId(userId)
+            .name(name)
+            .sub(sub)
+            .con(con)
+            .viewCount(viewCount)
+            .img(img)
+            .posttype(posttype)
+            .logtime(logtime)
+            .build();
+    }
+}

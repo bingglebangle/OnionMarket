@@ -1,0 +1,51 @@
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "Saleboard")
+public class Saleboard {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_Saleboard")
+    @SequenceGenerator(name = "seq_Saleboard", sequenceName = "seq_Saleboard", allocationSize = 1)
+    private Long SBseq;  // 글번호 (PK)
+
+    @Column(name = "SBid", length = 30, nullable = false)
+    private String SBid;  // 판매자 ID (FK)
+
+    @Column(name = "SBsubject", length = 30, nullable = false)
+    private String SBsubject;  // 제목
+
+    @Column(name = "SBcontent", length = 4000, nullable = false)
+    private String SBcontent;  // 글 내용
+
+    @Column(name = "SBimg", length = 4000)
+    private String SBimg;  // 이미지
+
+    @Column(name = "is_available", nullable = false)
+    private int isAvailable = 1;  // 1: true, 0: false (게시물 활성화 여부)
+
+    @Column(name = "SBlogtime")
+    @Temporal(TemporalType.DATE)
+    private Date SBlogtime;  // 등록 시간
+
+    @Column(name = "SBtype")
+    private int SBtype;  // 게시물 유형
+
+    // 관계 매핑
+    @OneToMany(mappedBy = "saleboard", cascade = CascadeType.ALL)
+    private List<JobBoardPost> jobBoardPosts;
+
+    // SaleUser 외래키 매핑
+    @ManyToOne
+    @JoinColumn(name = "SBid", referencedColumnName = "Saleid", insertable = false, updatable = false)
+    private SaleUser saleUser;
+}

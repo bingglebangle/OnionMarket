@@ -1,0 +1,34 @@
+package com.example.onion.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+public class Jobboard {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_Jobboard_generator")
+	@SequenceGenerator(name = "seq_Jobboard_generator", sequenceName = "seq_Jobboard", allocationSize = 1)
+	private Long id;
+
+	SBid VARCHAR2(30) NOT NULL,
+    SBseq number PRIMARY KEY ,
+
+	SBsubject  VARCHAR2(30) NOT NULL,
+
+	SBcontent  VARCHAR2(4000) NOT NULL,
+
+	SBimg VARCHAR2(4000),
+
+	is_available NUMBER(1) DEFAULT 1,  -- 1을 TRUE로, 0을 FALSE로 사용
+    SBlogtime date,
+    SBtype number,
+
+}

@@ -1,0 +1,81 @@
+
+<style type="text/css">
+.paging {
+	color: blue;
+	text-decoration: none;
+}
+
+.currentPaging {
+	color: red;
+	text-decoration: underline;
+}
+
+#info:link {
+	color: black;
+	text-decoration: none;
+}
+
+#info:visited {
+	color: black;
+	text-decoration: none;
+}
+
+#info:active {
+	color: black;
+	text-decoration: none;
+}
+
+#info:hover {
+	color: green;
+	text-decoration: underline;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<table class="table" style="width: 1200px; margin: auto;">
+
+			<tr align="center" class="table-primary">
+				<th>아이디</th>
+				<th>이 름</th>
+				<th>가입일</th>
+				<th>게시글 수</th>
+				<!-- 작성 게시글 -->
+				<th>댓글 수</th>
+				<!-- 작성 댓글 -->
+			</tr>
+			<tr th:each="user : ${list}" align="center">
+				<td>[[${user.userid}]]</td>
+				<td>
+					<a th:href="@{/manager/profileView_m(userid=${user.userid},pg=${pg})}" id="info" 
+					   th:text="${user.uname != null ? user.uname : 'Unknown'}"></a>
+				</td>
+				<td>[[${user.ulogtime}]]</td>
+				<td><a th:href="@{/manager/profileView_m(userid=${user.userid},pg=${pg})}"></a>[[${totalboardcount}]]
+				</td>
+				<td><a th:href="@{/manager/profileView_m(userid=${user.userid},pg=${pg})}"></a>[[${commentcount}]]
+				</td>
+			</tr>
+			<tr align="center">
+				<td colspan="5"><th:block th:if="${startPage > 3}">
+            	[<a th:href="@{/manager/profileList(pg=${startPage-1})}"
+							class="paging">이전</a>]
+         	</th:block> <th:block
+						th:each="i : ${#numbers.sequence(startPage, endPage)}">
+						<th:block th:if="${pg == i}">
+               		[<a th:href="@{/manager/profileList(pg=${i})}"
+								th:text="${i}" class="currentPaging"></a>]
+            	</th:block>
+						<th:block th:unless="${pg == i}">
+               		[<a th:href="@{/manager/profileList(pg=${i})}"
+								th:text="${i}" class="paging"></a>]
+            	</th:block>
+					</th:block> <th:block th:if="${endPage < totalP}">
+            	[<a th:href="@{/manager/profileList(pg=${endPage+1})}"
+							class="paging">다음</a>]
+         	</th:block></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

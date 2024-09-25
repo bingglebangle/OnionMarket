@@ -1,0 +1,12 @@
+package com.example.onion.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.onion.dto.Jobboard;
+import com.example.onion.entity.Jobboardpost;
+import com.example.onion.entity.Saleboard;
+
+public interface JobBoardPostRepository extends JpaRepository<Jobboardpost, Long> {
+
+
+}

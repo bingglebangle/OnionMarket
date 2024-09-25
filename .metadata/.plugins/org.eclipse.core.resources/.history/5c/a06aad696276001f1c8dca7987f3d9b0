@@ -1,0 +1,27 @@
+package com.example.onion.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+import jakarta.persistence.SequenceGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Boardcategory {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_boardcategory")
+	@SequenceGenerator(name = "seq_boardcategory", sequenceName = "seq_Boardcategory")
+	private Long id;
+
+	private String boardcategory;
+
+	private Categorygroups cate;
+}

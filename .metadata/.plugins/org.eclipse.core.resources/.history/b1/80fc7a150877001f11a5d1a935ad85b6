@@ -1,0 +1,38 @@
+package com.example.onion.entity;
+
+import java.sql.Date;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Jobboard {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_Jobboard_generator")
+	@SequenceGenerator(name = "seq_Jobboard_generator", sequenceName = "seq_Jobboard", allocationSize = 1)
+	private String JBid;
+	private int JBseq;
+	private String  JBsub ;
+	private String JBcon;
+	private int JBPeoplenum;
+	private String JBWorkingdate;
+	private String JBWorkinghours;
+	private String JBEnddate;
+	private String JBSalarytype;
+	private String JBSalary;
+	@Temporal(TemporalType.DATE)
+	private Date logtime;
+
+}
